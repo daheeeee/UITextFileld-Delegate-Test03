@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var lab: UILabel!
     
@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        txt.delegate = self
         
         txt.placeholder = "입력을 하세요"     //TextField 입력하시요 코딩
         txt.clearButtonMode = UITextFieldViewMode.whileEditing
@@ -35,12 +37,16 @@ class ViewController: UIViewController {
         view.endEditing(true)
 
     }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.backgroundColor = UIColor.green
+        view.endEditing(true)
+        return true
     }
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        view.backgroundColor = UIColor.gray
+        return true
+    }
+    
 
 
  }
